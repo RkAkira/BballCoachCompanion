@@ -1,4 +1,4 @@
 package com.efrei.bballcoachcompanion;
-
-public class getMatchActivity {
+import android.app.Activity;
+public class getMatchActivity extends Activity {
 }
