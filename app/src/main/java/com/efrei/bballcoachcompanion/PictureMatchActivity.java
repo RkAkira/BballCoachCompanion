@@ -33,7 +33,7 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class pictureMatchActivity extends Activity {
+public class PictureMatchActivity extends Activity {
 
     private static final String TAG = "CameraXApp";
     private static final String FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS";
@@ -86,7 +86,6 @@ public class pictureMatchActivity extends Activity {
                 return false;  // Retourner false si une permission n'est pas accordée
             }
         }
-
         return true;  // Retourner true si toutes les permissions sont accordées
     }
 
@@ -127,7 +126,7 @@ public class pictureMatchActivity extends Activity {
                 cameraProvider.unbindAll();
 
                 // Bind use cases to camera
-                cameraProvider.bindToLifecycle((LifecycleOwner) pictureMatchActivity.this, cameraSelector, preview, imageCapture, imageAnalysis);
+                cameraProvider.bindToLifecycle((LifecycleOwner) PictureMatchActivity.this, cameraSelector, preview, imageCapture, imageAnalysis);
 
             } catch (Exception exc) {
                 Log.e(TAG, "Use case binding failed", exc);
