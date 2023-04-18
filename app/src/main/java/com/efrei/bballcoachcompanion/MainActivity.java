@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,15 +14,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void locateMatches(){
+    public void locateMatches(View view) {
         Intent intent = new Intent(this, LocateMatchActivity.class);
         startActivity(intent);
     }
-    public void pictureMatches(){
+
+    public void pictureMatches(View view) {
         Intent intent = new Intent(this, pictureMatchActivity.class);
         startActivity(intent);
     }
-    public void getMatches(){
+
+    public void getMatches(View view) {
         Intent intent = new Intent(this, getMatchActivity.class);
         startActivity(intent);
     }
