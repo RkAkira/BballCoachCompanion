@@ -56,6 +56,6 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.32'
     implementation(platform('org.jetbrains.kotlin:kotlin-bom:1.8.20'))
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.8.20'
-    implementation 'org.osmdroid:osmdroid-android:6.1.11'
+    implementation 'org.osmdroid:osmdroid-android:6.1.16'
 
 }
