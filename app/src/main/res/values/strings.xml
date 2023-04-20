@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">BballCoachCompanion</string>
-    <string name="prendre_un_photo">Prendre un Photo</string>
+    <string name="prendrePhoto">Prendre un Photo</string>
+    <string name="localiserMatch">Localiser un match</string>
+    <string name="voirMatch">Voir les matchs</string>
+    <string name="date">Date</string>
+    <string name="save">Sauvegarder</string>
+    <string name="points_scored">Points scoré</string>
+    <string name="best_scorer">Meilleur marqueur</string>
+    <string name="team_1">Equipe 1</string>
+    <string name="team_2">Equipe 2</string>
+    <string name="score">Score</string>
 </resources>

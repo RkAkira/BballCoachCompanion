@@ -13,13 +13,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GetMatchActivity extends Activity {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/bbcoachcompanion";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "root";
 
     private GetMatchActivityBinding viewBinding;
 
-    private DBHandler dbHandler;//Utilise le dbhandler pour faire les ajouts ou recupérer les données avec les methodes associés
+    private DBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,50 +24,30 @@ public class GetMatchActivity extends Activity {
         viewBinding = GetMatchActivityBinding.inflate(getLayoutInflater());
         setContentView(viewBinding.getRoot());
 
-        dbHandler = new DBHandler(GetMatchActivity.this);
-    }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-
-    public void connectAndFetchData() {
-        Connection connection = null;
-        try {
-            // Charger le pilote JDBC
-            Class.forName("com.mysql.jdbc.Driver");
-
-            // Établir la connexion à la base de données
-            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-
-            // Créer la requête SQL
-            String sql = "SELECT * FROM rencontre ";
-            PreparedStatement statement = connection.prepareStatement(sql);
-
-            // Exécuter la requête
-            ResultSet resultSet = statement.executeQuery();
-
-            // Parcourir les résultats et afficher les valeurs des colonnes
-            while (resultSet.next()) {
-                String column1 = resultSet.getString("<COLUMN1_NAME>");
-                String column2 = resultSet.getString("<COLUMN2_NAME>");
-
-                // Faites quelque chose avec les valeurs récupérées, par exemple les afficher dans les logs
-                Log.d("DB", "Column1: " + column1);
-                Log.d("DB", "Column2: " + column2);
-
-
-            }
-
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Fermer la connexion à la base de données
-            if (connection != null) {
                 try {
-                    connection.close();
-                } catch (SQLException e) {
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://10.0.0.2/bbcoachcompanion" + "user=root&password=root");
+
+                    String sql = "SELECT * FROM RENCONTRE";
+                    PreparedStatement statement = connection.prepareStatement(sql);
+                    ResultSet resultSet = statement.executeQuery();
+                    while(resultSet.next()){
+                        String first = resultSet.getString("id_match");
+                        String second = resultSet.getString("equipe_1");
+                        String third = resultSet.getString("equipe_2");
+
+                        Log.d("zaetataet", first);
+                        Log.d("DB", second);
+                        Log.d("DB", third);
+                    }
+
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
-        }
-    }
 
+            }}).start();
+    }
 }

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:elevation="2dp"
         android:onClick="takePhoto"
-        android:text="@string/prendre_un_photo"
+        android:text="@string/prendrePhoto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/vertical_centerline"
         app:layout_constraintHorizontal_bias="0.33"
