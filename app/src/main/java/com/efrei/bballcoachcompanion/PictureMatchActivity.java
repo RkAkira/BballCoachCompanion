@@ -126,7 +126,7 @@ public class PictureMatchActivity extends Activity {
                 cameraProvider.unbindAll();
 
                 // Bind use cases to camera
-                cameraProvider.bindToLifecycle((LifecycleOwner) PictureMatchActivity.this, cameraSelector, preview, imageCapture, imageAnalysis);
+                cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, preview, imageCapture, imageAnalysis);
 
             } catch (Exception exc) {
                 Log.e(TAG, "Use case binding failed", exc);
