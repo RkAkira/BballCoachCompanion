@@ -1,6 +1,8 @@
 package com.efrei.bballcoachcompanion;
 
 import android.app.Activity;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 
 import org.osmdroid.api.IMapController;
@@ -9,6 +11,10 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class LocateMatchActivity extends Activity {
 
@@ -27,10 +33,8 @@ public class LocateMatchActivity extends Activity {
 
         IMapController mapController = mMapView.getController();
         mapController.setZoom(18.0);
-        GeoPoint startPoint = new GeoPoint(48.8475, 2.3444); // Paris
+        GeoPoint startPoint = getAddressLocation("43 allée de la ferme d'armenon, Gif-sur-yevette");
         mapController.setCenter(startPoint);
-
-        // Add a marker to the map
         mMarker = new Marker(mMapView);
         mMarker.setPosition(startPoint);
         mMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
@@ -53,5 +57,21 @@ public class LocateMatchActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    public GeoPoint getAddressLocation(String address) {
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocationName(address, 1);
+            if (addresses != null && addresses.size() > 0) {
+                Address firstAddress = addresses.get(0);
+                double lat = firstAddress.getLatitude();
+                double lon = firstAddress.getLongitude();
+                return new GeoPoint(lat, lon);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
