@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.efrei.bballcoachcompanion.Modal.RencontreModal;
 import com.efrei.bballcoachcompanion.databinding.GetMatchActivityBinding;
 
 import java.sql.Connection;
@@ -11,6 +15,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class GetMatchActivity extends Activity {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/bbcoachcompanion";
@@ -19,6 +24,8 @@ public class GetMatchActivity extends Activity {
 
     private GetMatchActivityBinding viewBinding;
 
+    private RencontreRVAdapter rencontreRVAdapter;
+    private RecyclerView rencontreRv;
     private DBHandler dbHandler;//Utilise le dbhandler pour faire les ajouts ou recupérer les données avec les methodes associés
 
     @Override
@@ -28,7 +35,20 @@ public class GetMatchActivity extends Activity {
         setContentView(viewBinding.getRoot());
 
         dbHandler = new DBHandler(GetMatchActivity.this);
+        ArrayList<RencontreModal> rencontreModalArrayList = dbHandler.readRencontre();
+        rencontreRVAdapter = new RencontreRVAdapter(rencontreModalArrayList, GetMatchActivity.this);
+        rencontreRv = findViewById(R.id.idRVRencontre);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(GetMatchActivity.this, RecyclerView.VERTICAL, false);
+        rencontreRv.setLayoutManager(linearLayoutManager);
+
+        // setting our adapter to recycler view.
+        rencontreRv.setAdapter(rencontreRVAdapter);
+
     }
+
+
+
+
 
 
     public void connectAndFetchData() {

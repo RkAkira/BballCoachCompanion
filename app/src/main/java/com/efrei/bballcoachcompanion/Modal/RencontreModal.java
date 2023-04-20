@@ -8,6 +8,10 @@ public class RencontreModal {
     private String bestScoreur;
     private int pts_mis;
 
+    private String date;
+
+
+
     public RencontreModal(String equipe1, String equipe2, String score, String bestScoreur, int pts_mis, String date) {
         this.equipe1 = equipe1;
         this.equipe2 = equipe2;
@@ -62,5 +66,13 @@ public class RencontreModal {
 
     public void setPts_mis(int pts_mis) {
         this.pts_mis = pts_mis;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
