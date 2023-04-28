@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.efrei.bballcoachcompanion.Modal.RencontreModal;
 import com.efrei.bballcoachcompanion.Modal.StatistiqueModal;
@@ -49,7 +50,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query1 = "CREATE TABLE "+ TABLE_NAME1+" ( "+ID+" INTEGER PRIMARY KEY AUTOINCREMENT," +
                 EQUIPE_1+" TEXT, "+EQUIPE_2 +" TEXT,"+ SCORE+" TEXT,"+ BEST_SCOREUR+" TEXT,"+ PTS_INSCRIT+" INTEGER," +
-                DATE+"TEXTE)";
+                DATE+" TEXT)";
 
         String query2 = "CREATE TABLE "+TABLE_NAME2+" ( "+ID_STAT+" INTEGER primary key,"+ID+" INTEGER," +
                 EQUIPE+" text," +Q1+" INTEGER,"+Q2+" INTEGER,"+Q3+"  INTEGER," +Q4+
@@ -64,12 +65,12 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(EQUIPE_1,eq1);
         values.put(EQUIPE_2,eq2);
         values.put(SCORE,score);
+        values.put(DATE,date);
+        values.put(EQUIPE_1,eq1);
         values.put(BEST_SCOREUR,mm);
         values.put(PTS_INSCRIT,pts);
-        values.put(DATE,date);
 
         db.insert(TABLE_NAME1, null,values);
         db.close();
@@ -92,6 +93,7 @@ public class DBHandler extends SQLiteOpenHelper {
                         cursor.getString(6)));
             }while (cursor.moveToNext());
         }
+        Log.d("aeptibaetb", arrayList.toString());
         cursor.close();
         return arrayList;
     }

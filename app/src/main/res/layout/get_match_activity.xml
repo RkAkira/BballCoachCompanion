@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVRencontre"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/buttonAddMatch" />
+
+    <Button
+        android:id="@+id/buttonAddMatch"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="@string/AjouterMatch"
+        android:onClick="CreateMatch"
+        android:backgroundTint="@color/btnColor"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+
 </RelativeLayout>

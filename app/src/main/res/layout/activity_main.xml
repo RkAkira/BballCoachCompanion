@@ -25,7 +25,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/button_celtics"
+        android:id="@+id/buttonLocateMatch"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:text="@string/localiserMatch"
@@ -38,7 +38,7 @@
         android:layout_marginTop="40dp"/>
 
     <Button
-        android:id="@+id/button_lakers"
+        android:id="@+id/buttonTakePicture"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:onClick="pictureMatches"
@@ -46,12 +46,12 @@
         android:backgroundTint="@color/btnColor"
         android:textColor="@color/white"
         android:textSize="16sp"
-        android:layout_below="@+id/button_celtics"
+        android:layout_below="@+id/buttonLocateMatch"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"/>
 
     <Button
-        android:id="@+id/button_nets"
+        android:id="@+id/buttonSeeMatch"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:onClick="getMatches"
@@ -59,7 +59,7 @@
         android:backgroundTint="@color/btnColor"
         android:textColor="@color/white"
         android:textSize="16sp"
-        android:layout_below="@+id/button_lakers"
+        android:layout_below="@+id/buttonTakePicture"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"/>
 

@@ -3,6 +3,7 @@
     <string name="prendrePhoto">Prendre un Photo</string>
     <string name="localiserMatch">Localiser un match</string>
     <string name="voirMatch">Voir les matchs</string>
+    <string name="AjouterMatch">Ajouter un match</string>
     <string name="date">Date</string>
     <string name="save">Sauvegarder</string>
     <string name="points_scored">Points scoré</string>
