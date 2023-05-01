@@ -1,6 +1,7 @@
 package com.efrei.bballcoachcompanion;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class LocateMatchActivity extends Activity {
+public class LocateMatchActivity extends AppCompat {
 
     private MapView mMapView;
     private Marker mMarker;
@@ -24,7 +25,7 @@ public class LocateMatchActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         Configuration.getInstance().load(this, getPreferences(MODE_PRIVATE));
         setContentView(R.layout.locate_match_activity);
 

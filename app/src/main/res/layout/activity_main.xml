@@ -4,14 +4,19 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor">
 
+    <Button
+        android:id="@+id/LanguageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/btnColor"
+        android:textColor="@color/white"
+        android:text="@string/langue" />
+
     <ImageView
         android:id="@+id/imageView_logo"
         android:layout_width="match_parent"
         android:layout_height="195dp"
         android:layout_above="@+id/title"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="-280dp"
-        android:layout_marginBottom="53dp"
         android:src="@drawable/nba" />
 
     <TextView

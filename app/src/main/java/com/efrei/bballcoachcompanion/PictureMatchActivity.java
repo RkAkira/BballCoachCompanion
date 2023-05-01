@@ -4,6 +4,7 @@ package com.efrei.bballcoachcompanion;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,7 +34,7 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class PictureMatchActivity extends Activity {
+public class PictureMatchActivity extends AppCompat {
 
     private static final String TAG = "CameraXApp";
     private static final String FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS";
@@ -54,6 +55,7 @@ public class PictureMatchActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         viewBinding = PictureMatchActivityBinding.inflate(getLayoutInflater());
         setContentView(viewBinding.getRoot());
 
