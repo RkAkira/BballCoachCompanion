@@ -73,6 +73,8 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(PTS_INSCRIT,pts);
 
         db.insert(TABLE_NAME1, null,values);
+        Cursor cursor = db.rawQuery("SELECT * FROM "+TABLE_NAME1,null);
+        cursor.close();
         db.close();
     }
 

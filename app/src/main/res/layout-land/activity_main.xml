@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Layout 1 : left_layout -->
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/LanguageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/btnColor"
+            android:text="@string/langue"
+            android:textColor="@color/white" />
+
+
+        <ImageView
+            android:id="@+id/imageView_logo"
+            android:layout_width="match_parent"
+            android:layout_height="195dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/nba" />
+
+            <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:layout_below="@+id/imageView_logo"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <!-- Layout 2 : right_layout -->
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/buttonLocateMatch"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:text="@string/localiserMatch"
+            android:onClick="locateMatches"
+            android:backgroundTint="@color/btnColor"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/buttonTakePicture"
+            android:layout_marginEnd="40dp"/>
+
+        <Button
+            android:id="@+id/buttonTakePicture"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:onClick="pictureMatches"
+            android:text="@string/prendrePhoto"
+            android:backgroundTint="@color/btnColor"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"/>
+
+        <Button
+            android:id="@+id/buttonSeeMatch"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:onClick="getMatches"
+            android:text="@string/voirMatch"
+            android:backgroundTint="@color/btnColor"
+            android:textColor="@color/white"
+            android:layout_below="@+id/buttonTakePicture"
+            android:layout_centerHorizontal="true"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

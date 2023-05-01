@@ -2,71 +2,75 @@ package com.efrei.bballcoachcompanion;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.efrei.bballcoachcompanion.Modal.RencontreModal;
 import com.efrei.bballcoachcompanion.databinding.GetMatchActivityBinding;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class GetMatchActivity extends Activity {
+public class GetMatchActivity extends AppCompat {
 
-    private GetMatchActivityBinding viewBinding;
-    private RencontreRVAdapter rencontreRVAdapter;
-    private RecyclerView rencontreRv;
     private DBHandler dbHandler;//Utilise le dbhandler pour faire les ajouts ou recupérer les données avec les methodes associés
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewBinding = GetMatchActivityBinding.inflate(getLayoutInflater());
-        setContentView(viewBinding.getRoot());
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        setContentView(R.layout.get_match_activity);
         dbHandler = new DBHandler(GetMatchActivity.this);
         ArrayList<RencontreModal> rencontreModalArrayList = dbHandler.readRencontre();
-        rencontreRVAdapter = new RencontreRVAdapter(rencontreModalArrayList, GetMatchActivity.this);
-        rencontreRv = findViewById(R.id.idRVRencontre);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(GetMatchActivity.this, RecyclerView.VERTICAL, false);
-        rencontreRv.setLayoutManager(linearLayoutManager);
+        LinearLayout idRVContainer = findViewById(R.id.idRVRencontre);
 
-        // setting our adapter to recycler view.
-        rencontreRv.setAdapter(rencontreRVAdapter);
+        if (rencontreModalArrayList.isEmpty()) {
+            TextView tvNoData = new TextView(this);
+            tvNoData.setText(R.string.NoMatch);
+            idRVContainer.addView(tvNoData);
+        } else {
+            for (RencontreModal rencontreModal : rencontreModalArrayList) {
+                View view = LayoutInflater.from(this).inflate(R.layout.item_layout, idRVContainer, false);
+                TextView tv_Match = view.findViewById(R.id.tv_Match);
+                tv_Match.setText(tv_Match.getText() + " " + rencontreModal.getEquipe1().toLowerCase() + " v " + rencontreModal.getEquipe2().toLowerCase());
+                TextView tv_date = view.findViewById(R.id.tv_Date);
+                tv_date.setText(rencontreModal.getDate());
+                TextView tv_score = view.findViewById(R.id.tv_score);
+                tv_score.setText(tv_score.getText() + " " + rencontreModal.getScore());
+                TextView tv_best_scoreur = view.findViewById(R.id.tv_best_scoreur);
+                tv_best_scoreur.setText(tv_best_scoreur.getText() + " " + rencontreModal.getBestScoreur() + " with " + rencontreModal.getPts_mis() + " points");
 
-        new Thread(new Runnable() {
+                idRVContainer.addView(view);
+            }
+        }
+        //cela ne fonctionne pas avec la dernière version de dépandance mysql
+        /*new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://10.0.0.2/bbcoachcompanion" + "user=root&password=root");
 
-                    String sql = "SELECT * FROM RENCONTRE";
+                try {
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/bbcoachcompanion?" +"user=root&password=root");
+                    String sql = "SELECT * FROM rencontre";
                     PreparedStatement statement = connection.prepareStatement(sql);
                     ResultSet resultSet = statement.executeQuery();
-                    while(resultSet.next()){
-                        String first = resultSet.getString("id_match");
-                        String second = resultSet.getString("equipe_1");
-                        String third = resultSet.getString("equipe_2");
+                    while (resultSet.next()) {
+                        String first = resultSet.getString("col1");
+                        String second = resultSet.getString("col2");
 
-                        Log.d("zaetataet", first);
+                        Log.d("DB", first);
                         Log.d("DB", second);
-                        Log.d("DB", third);
+
                     }
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-            }}).start();
+            }}).start();*/
     }
 
     public void CreateMatch(View view) {

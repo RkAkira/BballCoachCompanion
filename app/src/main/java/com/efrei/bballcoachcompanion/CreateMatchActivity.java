@@ -3,6 +3,8 @@ package com.efrei.bballcoachcompanion;
 import static java.lang.Integer.parseInt;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -10,7 +12,7 @@ import android.widget.Toast;
 
 import com.efrei.bballcoachcompanion.databinding.CreateMatchActivityBinding;
 
-public class CreateMatchActivity extends Activity {
+public class CreateMatchActivity extends AppCompat {
 
     private CreateMatchActivityBinding viewBinding;
 
@@ -19,6 +21,7 @@ public class CreateMatchActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         viewBinding = CreateMatchActivityBinding.inflate(getLayoutInflater());
         setContentView(viewBinding.getRoot());
         eq1 = viewBinding.team1;
@@ -45,13 +48,16 @@ public class CreateMatchActivity extends Activity {
         }
 
         dbHandler.addNewMatch(eq1S, eq2S,scoreS,bScorerS,pScoredS,dateS);
-        Toast.makeText(CreateMatchActivity.this, "Course has been added.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CreateMatchActivity.this, R.string.CourseValidation, Toast.LENGTH_SHORT).show();
         eq1.setText("");
         eq2.setText("");
         score.setText("");
         bestScorer.setText("");
         pointScored.setText("");
         date.setText("");
+
+        Intent intent = new Intent(this, GetMatchActivity.class);
+        startActivity(intent);
 
     }
 

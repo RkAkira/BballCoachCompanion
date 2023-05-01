@@ -7,7 +7,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_centerInParent="true">
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/score">
         <EditText
             android:id="@+id/team1"
             android:layout_width="wrap_content"
@@ -26,7 +27,7 @@
         android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linear1"
+        android:layout_above="@+id/linear2"
         android:layout_centerHorizontal="true"
         android:hint="@string/score" />
     <LinearLayout
@@ -34,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/score"
+        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true">
         <EditText
             android:id="@+id/best_scorer"
@@ -64,6 +65,7 @@
         android:layout_below="@id/date"
         android:layout_centerHorizontal="true"
         android:text="@string/save"
+        android:backgroundTint="@color/btnColor"
         android:onClick="saveData"/>
 
 </RelativeLayout>
